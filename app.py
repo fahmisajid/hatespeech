@@ -5,7 +5,7 @@ import pickle
 
 st.title("APLIKASI LINGUISTIK FORENSIK BERBASIS KORPUS KASUS HUKUM UJARAN KEBENCIAN")
 
-pkl_filename = "LR_model.pkl"
+pkl_filename = "LR_Model.pkl"
 
 with open(pkl_filename, 'rb') as file:
     classifier = pickle.load(file)
