@@ -11,6 +11,7 @@ def jaccard_similarity(x,y):
 
 st.title("APLIKASI LINGUISTIK FORENSIK BERBASIS KORPUS KASUS HUKUM UJARAN KEBENCIAN")
 
+df = pd.read_csv('tweetclean.csv')
 pkl_filename = "LR_Model.pkl"
 
 with open(pkl_filename, 'rb') as file:
