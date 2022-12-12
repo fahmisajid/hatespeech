@@ -47,7 +47,7 @@ for i in range(len(kalimat2)-1):
 #create Data Frame tweet and similarity score
 dict = {'sentences': kalimat, 'similarity_score': similarity_result} 
 df_similarity = pd.DataFrame(dict)
-df2 = df_similarity.sort_values(by='similarity_score', ascending=False).head() #data frame with similarity score between input and dataset
+df2 = df_similarity.sort_values(by='similarity_score', ascending=False).reset_index().head(3) #data frame with similarity score between input and dataset
 
 products_list = df2.values.tolist() #convert to list
 
@@ -55,9 +55,21 @@ if sentence:
     st.text("Hasil:")
     st.write(prediction[0])
 
-    st.subheader('Kelas Label dan Nomor Indeks')
-    st.write(classifier.classes_)
+    ##st.subheader('Kelas Label dan Nomor Indeks')
+    #st.write(classifier.classes_)
     
     st.subheader("Hasil Similariti Kalimat:")
     for i in range(1, len(products_list)+1):
-        st.write(i, " ", products_list[i-1][0])
+        st.write(i, " ", products_list[i-1][1])
+        with st.expander("see more"):
+          #st.write("Kalimat: ",df2["sentences"].iloc[i-1])
+          st.write("Kata Kunci: ")
+          st.write("Pasal Sangkaan: ")
+          st.write("Status Perkara: ")
+          st.write("Kronologis: ")
+          
+          
+          
+        
+
+    
