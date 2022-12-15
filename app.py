@@ -9,7 +9,7 @@ def jaccard_similarity(x,y):
   union_cardinality = len(set.union(*[set(x), set(y)]))
   return intersection_cardinality/float(union_cardinality)
 
-st.set_page_config(page_title="Si-Yudistria: Sistem Aplikasi Yuridis Deteksi Ujaran")
+st.set_page_config(page_title="Si-Yudistira: Sistem Aplikasi Yuridis Deteksi Ujaran")
 
 st.title("Si-Yudistria")
 st.header("Sistem Aplikasi Yuridis Deteksi Ujaran")
