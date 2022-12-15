@@ -9,9 +9,12 @@ def jaccard_similarity(x,y):
   union_cardinality = len(set.union(*[set(x), set(y)]))
   return intersection_cardinality/float(union_cardinality)
 
-st.title("APLIKASI LINGUISTIK FORENSIK BERBASIS KORPUS KASUS HUKUM UJARAN KEBENCIAN")
+st.set_page_config(page_title="Si-Yudistria: Sistem Aplikasi Yuridis Deteksi Ujaran")
 
-df = pd.read_csv('tweetclean.csv')
+st.title("Si-Yudistria")
+st.header("Sistem Aplikasi Yuridis Deteksi Ujaran")
+
+df = pd.read_csv('dummyhatespeech.csv')
 pkl_filename = "LR_Model.pkl"
 
 with open(pkl_filename, 'rb') as file:
@@ -47,12 +50,16 @@ for i in range(len(kalimat2)-1):
 #create Data Frame tweet and similarity score
 dict = {'sentences': kalimat, 'similarity_score': similarity_result} 
 df_similarity = pd.DataFrame(dict)
-df2 = df_similarity.sort_values(by='similarity_score', ascending=False).reset_index().head(3) #data frame with similarity score between input and dataset
-
+df2 = df.copy()
+df2['similarity_score'] = df_similarity['similarity_score']
+df2 = df2.sort_values(by='similarity_score', ascending=False).reset_index().head(3) #data frame with similarity score between input and dataset
+df2 = df2.drop(['index', 'Unnamed: 0'], axis=1)
 products_list = df2.values.tolist() #convert to list
 
+#st.write(df2.head())
+
 if sentence:
-    st.text("Hasil:")
+    st.subheader("Hasil prediksi:")
     st.write(prediction[0])
 
     ##st.subheader('Kelas Label dan Nomor Indeks')
@@ -63,10 +70,12 @@ if sentence:
         st.write(i, " ", products_list[i-1][1])
         with st.expander("see more"):
           #st.write("Kalimat: ",df2["sentences"].iloc[i-1])
-          st.write("Kata Kunci: ")
-          st.write("Pasal Sangkaan: ")
-          st.write("Status Perkara: ")
-          st.write("Kronologis: ")
+          st.write("**Kata Kunci:** ", df2["katakunci"].iloc[i-1])
+          st.write("**Pasal Sangkaan:** ",  df2["pasal"].iloc[i-1])
+          st.write("**Status Perkara:** ", df2["status"].iloc[i-1])
+          st.write("**Kronologis:** ", df2["kronologis"].iloc[i-1])
+          st.write("**Agama:** ", df2["agama"].iloc[i-1])
+          st.write("**Jenis Kelamin:** ",  df2["gender"].iloc[i-1])
           
           
           
