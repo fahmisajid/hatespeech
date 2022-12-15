@@ -70,7 +70,7 @@ if sentence:
         st.write(i, " ", products_list[i-1][1])
         with st.expander("see more"):
           #st.write("Kalimat: ",df2["sentences"].iloc[i-1])
-          st.write("**Kata Kunci:** ", df2["katakunci"].iloc[i-1])
+          #st.write("**Kata Kunci:** ", df2["katakunci"].iloc[i-1])
           st.write("**Pasal Sangkaan:** ",  df2["pasal"].iloc[i-1])
           st.write("**Status Perkara:** ", df2["status"].iloc[i-1])
           st.write("**Kronologis:** ", df2["kronologis"].iloc[i-1])
